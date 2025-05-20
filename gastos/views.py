@@ -8,6 +8,8 @@ import json
 from django.http import JsonResponse
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.shortcuts import get_object_or_404
+
 
 def obtener_datos_por_categoria():
     gastos = Gasto.objects.all()
@@ -28,6 +30,13 @@ def debug_data(request):
 def obtener_datos_gastos():
     gastos = Gasto.objects.all()
     return json.dumps([{"nombre": g.nombre, "monto": float(g.monto)} for g in gastos])
+
+def eliminar_gasto(request, gasto_id):
+    gasto = get_object_or_404(Gasto, id=gasto_id)
+    gasto.delete()
+    messages.success(request, "¡Gasto eliminado correctamente!")
+    return redirect("index")
+
 
 
 @login_required(login_url="login")
