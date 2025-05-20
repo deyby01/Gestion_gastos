@@ -24,7 +24,12 @@
         </form>
 
         <form method="GET" class="mb-3">
-        <input type="text" name="q" placeholder="Buscar gasto..." value="{{ query }}" class="form-control mb-2">
+        <input type="text" name="q" placeholder="Buscar gasto..." value="{{ query }}" class="form-control">
+        <button type="submit" class="btn btn-primary mt-2">Buscar</button>
+        </form>
+
+        <form method="GET" class="mb-3">
+        <!--<input type="text" name="q" placeholder="Buscar gasto..." value="{{ query }}" class="form-control mb-2">-->
     
         <label>Desde:</label>
         <input type="date" name="fecha_inicio" class="form-control mb-2">
@@ -35,10 +40,7 @@
         <button type="submit" class="btn btn-primary mt-2">Filtrar</button>
         </form>
 
-        <form method="GET" class="mb-3">
-        <input type="text" name="q" placeholder="Buscar gasto..." value="{{ query }}" class="form-control">
-        <button type="submit" class="btn btn-primary mt-2">Buscar</button>
-        </form>
+        
 
         <!-- Listado de gastos -->
         <h2 class="text-secondary">Historial de Gastos</h2>
