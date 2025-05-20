@@ -9,9 +9,25 @@
     <link rel="stylesheet" type="text/css" href="{% static 'gastos/styles.css' %}">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
-<body class="bg-light text-center py-5">
-    <div class="container">
-        <h1 class="text-primary">Gestor de Gastos</h1>
+<body class="bg-light py-3">
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-light bg-light">
+        <div class="container-fluid d-flex justify-content-end">
+            {% if user.is_authenticated %}
+                <span class="navbar-text me-3">Bienvenido, <strong>{{ user.username }}</strong></span>
+                <form method="POST" action="{% url 'logout' %}">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger btn-sm">Cerrar sesión</button>
+                </form>
+            {% else %}
+                <a href="{% url 'login' %}" class="btn btn-primary btn-sm">Iniciar sesión</a>
+            {% endif %}
+        </div>
+    </nav>
+
+    <div class="container text-center">
+        <h1 class="text-primary mt-4">Gestor de Gastos</h1>
         <p class="lead">¡Administra tus finanzas de manera sencilla y eficiente!</p>
 
         <!-- Formulario para agregar gasto -->
@@ -23,24 +39,28 @@
             <button type="submit" class="btn btn-success">Añadir Gasto</button>
         </form>
 
+        {% if messages %}
+            <div class="container">
+                {% for message in messages %}
+                    <div class="alert alert-success">{{ message }}</div>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        <!-- Formulario de búsqueda -->
         <form method="GET" class="mb-3">
-        <input type="text" name="q" placeholder="Buscar gasto..." value="{{ query }}" class="form-control">
-        <button type="submit" class="btn btn-primary mt-2">Buscar</button>
+            <input type="text" name="q" placeholder="Buscar gasto..." value="{{ query }}" class="form-control">
+            <button type="submit" class="btn btn-primary mt-2">Buscar</button>
         </form>
 
+        <!-- Formulario de filtro por fechas -->
         <form method="GET" class="mb-3">
-        <!--<input type="text" name="q" placeholder="Buscar gasto..." value="{{ query }}" class="form-control mb-2">-->
-    
-        <label>Desde:</label>
-        <input type="date" name="fecha_inicio" class="form-control mb-2">
-
-        <label>Hasta:</label>
-        <input type="date" name="fecha_fin" class="form-control mb-2">
-
-        <button type="submit" class="btn btn-primary mt-2">Filtrar</button>
+            <label>Desde:</label>
+            <input type="date" name="fecha_inicio" class="form-control mb-2">
+            <label>Hasta:</label>
+            <input type="date" name="fecha_fin" class="form-control mb-2">
+            <button type="submit" class="btn btn-primary mt-2">Filtrar</button>
         </form>
-
-        
 
         <!-- Listado de gastos -->
         <h2 class="text-secondary">Historial de Gastos</h2>
@@ -55,42 +75,36 @@
             {% endfor %}
         </ul>
 
+        <!-- Gráficos -->
         <canvas id="gastosChart" width="400" height="200"></canvas>
+        <canvas id="categoriasChart" width="400" height="200"></canvas>
 
     </div>
-    
-    <script>
-    var gastosData = JSON.parse('{{ gastos_json|escapejs }}');
 
-    var ctx = document.getElementById('gastosChart').getContext('2d');
-    var chart = new Chart(ctx, {
-        type: 'pie',  // Cambiamos a un gráfico de pastel para mejor visualización
-        data: {
-            labels: gastosData.map(g => g.nombre),
-            datasets: [{
-                label: 'Distribución de Gastos',
-                data: gastosData.map(g => g.monto),
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.5)',
-                    'rgba(54, 162, 235, 0.5)',
-                    'rgba(255, 206, 86, 0.5)',
-                    'rgba(75, 192, 192, 0.5)',
-                    'rgba(153, 102, 255, 0.5)',
-                ],
-                borderColor: [
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                ],
-                borderWidth: 1
-            }]
-        },
-        options: {
-            responsive: true
+    <script>
+        var categoriasData = JSON.parse('{{ gastos_por_categoria_json|escapejs }}');
+        var labels = categoriasData.map(c => c.categoria);
+        var data = categoriasData.map(c => c.total);
+
+        if (labels.length > 0) {
+            var ctxCategorias = document.getElementById('categoriasChart').getContext('2d');
+            var categoriasChart = new Chart(ctxCategorias, {
+                type: 'pie',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Distribución de Gastos por Categoría',
+                        data: data,
+                        backgroundColor: labels.map((_, i) => `hsl(${i * 60}, 70%, 50%)`),
+                        borderColor: labels.map((_, i) => `hsl(${i * 60}, 70%, 30%)`),
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true
+                }
+            });
         }
-    });
     </script>
 
 </body>

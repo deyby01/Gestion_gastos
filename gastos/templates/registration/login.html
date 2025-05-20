@@ -1,0 +1,24 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar Sesión</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'gastos/styles.css' %}">
+</head>
+<body class="login-bg">
+    <div class="login-container">
+        <h1 class="login-title">Iniciar Sesión</h1>
+        <p class="login-subtitle">Gestiona tus gastos de manera inteligente</p>
+        
+        <form method="POST" class="login-form">
+            {% csrf_token %}
+            <div class="login-inputs">
+                {{ form.as_p }}
+            </div>
+            <button type="submit" class="btn btn-success login-button">Ingresar</button>
+        </form>
+    </div>
+</body>
+</html>

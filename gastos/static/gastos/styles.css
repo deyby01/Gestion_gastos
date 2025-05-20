@@ -16,3 +16,62 @@ h1 {
     border-radius: 10px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 }
+
+/* Fondo dinámico */
+.login-bg {
+    background: linear-gradient(to right, #091e42, #007bff);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Contenedor del formulario */
+.login-container {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 40px;
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    width: 350px;
+}
+
+/* Título */
+.login-title {
+    font-size: 28px;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+/* Subtítulo */
+.login-subtitle {
+    font-size: 16px;
+    color: #ffffff;
+    margin-bottom: 20px;
+}
+
+/* Inputs */
+.login-form input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: none;
+    border-radius: 5px;
+}
+
+/* Botón */
+.login-button {
+    width: 100%;
+    font-size: 18px;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    transition: 0.3s ease-in-out;
+}
+
+.login-button:hover {
+    background-color: #218838;
+}
