@@ -80,7 +80,7 @@ WSGI_APPLICATION = 'gestor_gastos.wsgi.application'
 
 DATABASES = {
     "default": dj_database_url.config(
-        default="postgres://gestor_gastos_db_user:TU_PASSWORD@dpg-d0mg34u3pjlc738avaqq-a:5432/gestor_gastos_db",
+        default="postgres://gestor_gastos_db_user:toC0XB8g51jnGhVjo788C9vYvbu9V4s5@dpg-d0mg34u3pjlc738avaqq-a:5432/gestor_gastos_db",
         conn_max_age=600,
         ssl_require=True
     )
