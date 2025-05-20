@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 
 from pathlib import Path
 import os
-import dj_database_url
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -25,9 +25,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-v2xh5raxp62t^n)*#8l==+3g5f*9xfy$vy8a82ec)2%3_4j885'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
+ALLOWED_HOSTS = []
 
 LOGIN_REDIRECT_URL = "index"
 LOGOUT_REDIRECT_URL = "login"
@@ -79,11 +79,10 @@ WSGI_APPLICATION = 'gestor_gastos.wsgi.application'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
 DATABASES = {
-    "default": dj_database_url.config(
-        default="postgres://gestor_gastos_db_user:toC0XB8g51jnGhVjo788C9vYvbu9V4s5@dpg-d0mg34u3pjlc738avaqq-a:5432/gestor_gastos_db",
-        conn_max_age=600,
-        ssl_require=True
-    )
+    "default": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": BASE_DIR / "db.sqlite3",
+    }
 }
 
 
@@ -122,9 +121,10 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATIC_URL = '/static/'
-STATICFILES_DIRS = [os.path.join(BASE_DIR / "gastos/static")]
+
+STATIC_URL = 'static/'
+STATICFILES_DIRS = [BASE_DIR / "gastos/static"]
+STATIC_ROOT = BASE_DIR / "staticfiles"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field

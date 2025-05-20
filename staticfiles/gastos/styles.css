@@ -1,0 +1,153 @@
+/* Fondo general con azul y negro en gradiente */
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(to right, #000000, #001f3f);
+    color: #ffffff;
+    padding: 20px;
+}
+
+/* Contenedor con tono menos oscuro */
+.container {
+    max-width: 900px;
+    background: rgba(255, 255, 255, 0.2); /* Color más claro */
+    padding: 20px;
+    border-radius: 15px;
+    backdrop-filter: blur(8px);
+    box-shadow: 0px 4px 15px rgba(0, 170, 255, 0.4);
+    text-align: center;
+}
+
+/* Título con efecto neón */
+h1 {
+    font-size: 36px;
+    font-weight: bold;
+    color: #00aaff;
+    text-shadow: 0px 0px 8px #00aaff;
+    text-transform: uppercase;
+}
+
+/* Título del Historial de Gastos */
+h2 {
+    font-size: 28px;
+    font-weight: bold;
+    color: #ffffff; /* Texto en blanco */
+}
+
+
+/* Botones con brillo */
+button, .btn {
+    font-size: 18px;
+    padding: 12px 18px;
+    border-radius: 5px;
+    transition: 0.3s ease-in-out;
+    box-shadow: 0px 0px 12px rgba(0, 170, 255, 0.6);
+}
+
+/* Botón de añadir gasto */
+.btn-success {
+    background-color: #00ff6a;
+    border: none;
+    color: #000000;
+    font-weight: bold;
+}
+
+.btn-success:hover {
+    background-color: #00cc55;
+    box-shadow: 0px 0px 16px rgba(0, 255, 106, 0.8);
+}
+
+/* Campos de formulario con blanco y contorno rojo neón */
+input, select {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border: 2px solid #ff0033; /* Contorno rojo neón */
+    background: #ffffff;
+    color: #000000;
+    font-size: 18px;
+    font-weight: bold;
+    text-shadow: 0px 0px 4px #ff0033;
+}
+
+/* Tarjetas de gastos con efecto luminoso */
+.list-group-item {
+    background: rgba(255, 255, 255, 0.15);
+    color: white;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 18px;
+    box-shadow: 0px 2px 10px rgba(0, 170, 255, 0.4);
+}
+
+/* Gráficos con efecto luminoso */
+canvas {
+    margin-top: 20px;
+    background: rgba(80, 78, 78, 0.3);
+    border-radius: 15px;
+    padding: 10px;
+    box-shadow: 0px 0px 20px rgba(0, 170, 255, 0.5);
+}
+
+/* Fondo dinámico */
+.login-bg {
+    background: linear-gradient(to right, #091e42, #007bff);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Contenedor del formulario */
+.login-container {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 40px;
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    width: 350px;
+}
+
+/* Título */
+.login-title {
+    font-size: 28px;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+/* Subtítulo */
+.login-subtitle {
+    font-size: 16px;
+    color: #ffffff;
+    margin-bottom: 20px;
+}
+
+/* Inputs */
+.login-form input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: none;
+    border-radius: 5px;
+}
+
+/* Botón */
+.login-button {
+    width: 100%;
+    font-size: 18px;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    transition: 0.3s ease-in-out;
+}
+
+.login-button:hover {
+    background-color: #218838;
+}
